@@ -1,0 +1,20 @@
+--- ../Make.Rules.orig	2021-10-31 10:09:51.992183470 +0000
++++ ./Make.Rules	2021-10-31 10:20:59.004729688 +0000
+@@ -54,7 +54,7 @@
+ KERNEL_HEADERS := $(topdir)/libcap/include/uapi
+ IPATH += -fPIC -I$(KERNEL_HEADERS) -I$(topdir)/libcap/include
+ 
+-CC := $(CROSS_COMPILE)gcc
++CC ?= $(CROSS_COMPILE)gcc
+ DEFINES := -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
+ COPTS ?= -O2
+ CFLAGS ?= $(COPTS) $(DEFINES)
+@@ -76,7 +76,7 @@
+ 
+ BUILD_GPERF := $(shell which gperf >/dev/null 2>/dev/null && echo yes)
+ 
+-SYSTEM_HEADERS = /usr/include
++SYSTEM_HEADERS = @TERMUX_PREFIX@/include
+ INCS=$(topdir)/libcap/include/sys/capability.h
+ LDFLAGS += -L$(topdir)/libcap
+ CFLAGS += -Dlinux $(WARNINGS) $(DEBUG)
