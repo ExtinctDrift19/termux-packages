@@ -9,10 +9,6 @@ TERMUX_PKG_SHA256=db62aab235764f735adc8378f796d6474596582b7dae357e0bddf313041898
 TERMUX_PKG_DEPENDS="libandroid-support, libandroid-glob, libiconv"
 TERMUX_PKG_BUILD_IN_SRC=true
 
-termux_step_make() {
-	make V=1 LDLIBS='-landroid-support -landroid-glob -liconv'
-}
-
-termux_step_make_install() {
-	make install V=1 prefix="$TERMUX_PREFIX"
+termux_step_pre_configure() {
+	export LDLIBS="-landroid-support -landroid-glob -liconv"
 }
