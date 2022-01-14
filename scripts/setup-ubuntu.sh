@@ -199,9 +199,6 @@ PACKAGES+=" triehash"
 # Needed by aspell dictionaries.
 PACKAGES+=" aspell"
 
-# Needed by package kphp.
-PACKAGES+=" python3-jsonschema"
-
 # Do not require sudo if already running as root.
 if [ "$(id -u)" = "0" ]; then
 	SUDO=""
